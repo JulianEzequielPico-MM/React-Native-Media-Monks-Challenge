@@ -6,18 +6,28 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './components/Home';
 import PhotosAlbum from './components/PhotosAlbum';
 import PhotoDetail from './components/PhotoDetail';
+import { PersistGate } from 'redux-persist/integration/react'
+import { Provider } from 'react-redux';
+import stores from './Redux/01-store';
+
+const { store, persistor } = stores();
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="PhotosAlbum" component={PhotosAlbum} />
-        <Stack.Screen name="PhotoDetail" component={PhotoDetail} />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="PhotosAlbum" component={PhotosAlbum} />
+            <Stack.Screen name="PhotoDetail" component={PhotoDetail} />
+          </Stack.Navigator>
+        </PersistGate>
+      </Provider>
+    </NavigationContainer >
   );
 }
 
