@@ -2,5 +2,5 @@
 import { Text } from "react-native"
 import MyAppText from "./MyAppText";
 
-export default props => <MyAppText> <Text style={{ fontSize: 20 }}>{props.children}</Text></MyAppText>
+export default props => <MyAppText style={[{ fontSize: 20 },props.style]}> <Text {...props} ></Text></MyAppText>
 

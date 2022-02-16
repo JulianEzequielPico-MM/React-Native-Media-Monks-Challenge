@@ -38,9 +38,17 @@ export default function App() {
     <NavigationContainer>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={Home} options={{title:"My Albums"}}/>
-            <Stack.Screen name="PhotosAlbum"  component={PhotosAlbum} options={({ route }) => ({ title: route.params.name })} />
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: 'white'
+              },
+              headerShadowVisible: false,
+              
+
+            }}>
+            <Stack.Screen name="Home" component={Home} options={{ title: "My Albums" }} />
+            <Stack.Screen name="PhotosAlbum" component={PhotosAlbum} options={({ route }) => ({ title: route.params.name })} />
             <Stack.Screen name="PhotoDetail" component={PhotoDetail} />
           </Stack.Navigator>
         </PersistGate>
@@ -53,7 +61,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "white",
     alignItems: 'center',
     justifyContent: 'center',
   },
