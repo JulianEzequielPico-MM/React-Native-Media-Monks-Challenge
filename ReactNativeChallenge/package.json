@@ -30,7 +30,12 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "redux-persist-expo-filesystem": "^2.0.0",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "react-native-androw": ">= 0.0.33",
+    "react-native-vector-icons": ">= 6.6.0",
+    "react-native-dynamic-vector-icons": ">= 0.2.1",
+    "@freakycoder/react-native-helpers": ">= 0.0.21",
+    "expo-constants": "~13.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

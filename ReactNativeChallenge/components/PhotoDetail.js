@@ -14,12 +14,16 @@ const styles = StyleSheet.create({
         width: width,
         height: height * 0.4,
         justifyContent: "space-evenly",
+        flexShrink:1,
         marginLeft: 10,
-
     },
     textInput: {
         borderColor: "#000000",
         borderBottomWidth: 1,
+
+    },
+    subContainer: {
+        flexDirection: "row",
 
     }
 
@@ -38,13 +42,22 @@ export default function PhotoDetail({ route }) {
                 onRequestClose={() => {
                     setModalVisible(!modalVisible);
                 }}
-            ><Image style={{ height: height, width: width }} source={{ uri: `${route.params.img}.png` }} />
+            ><Pressable onPress={() => setModalVisible(!modalVisible)}><Image style={{ height: height, width: width }} source={{ uri: `${route.params.img}.png` }} /></Pressable>
             </Modal>
             <View style={styles.container}>
-                <MyAppHeaderText >Details</MyAppHeaderText>
-                <MaterialIcons name="title" size={24} color="black"> <MyAppText  >{route.params.title}</MyAppText></MaterialIcons>
-                <Fontisto name="date" size={24} color="black"> <MyAppText style={{ fontStyle: "italic" }}>{route.params.date ? route.params.date :" -"}</MyAppText></Fontisto>
-                <Entypo name="text" size={24} color="black" > <MyAppText>{route.params.description ? route.params.description : <View><TextInput placeholder="Add a description..." style={styles.textInput}></TextInput></View>}</MyAppText> </Entypo>
+                <MyAppHeaderText>Details</MyAppHeaderText>
+                <View style={styles.subContainer}>
+                    <MaterialIcons style={{ alignSelf: "center" }} name="title" size={24} color="black"></MaterialIcons>
+                    <MyAppText style={{ margin: 10, flexShrink: 1}}>{route.params.title}</MyAppText>
+                </View>
+                <View style={styles.subContainer}>
+                    <Fontisto name="date" size={24} color="black"></Fontisto>
+                    <MyAppText style={{ fontStyle: "italic" }}>{route.params.date ? route.params.date : "  -"}</MyAppText>
+                </View>
+                <View style={styles.subContainer}>
+                    <Entypo style={{ alignSelf: "center" }} name="text" size={24} color="black" > </Entypo>
+                    {route.params.description ? <MyAppText style={{ margin:10,flexShrink: 1 }} >{route.params.description}</MyAppText> : <TextInput placeholder="Add a description..." style={styles.textInput}></TextInput>}
+                </View>
             </View>
         </ScrollView>
 

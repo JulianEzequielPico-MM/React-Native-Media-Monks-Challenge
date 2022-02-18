@@ -1,4 +1,3 @@
-import axios from "axios";
 
 export function albumsData(payload) {
   return {
@@ -13,4 +12,14 @@ export function photosData(payload) {
     payload
   };
 }
+
+export function renameAlbum(payload){
+  
+  return{
+    type:"RENAME_ALBUM",
+    payload
+  };
+}
+
+
 //////////////////////////////////////////////////

@@ -1,27 +1,21 @@
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, combineReducers } from "redux";
+import { devToolsEnhancer } from "redux-devtools-extension";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ExpoFileSystemStorage from 'redux-persist-expo-filesystem';
-import rootReducer from "../03-reducer";
+import albumsReducer from "../03-reducer";
 import { persistStore, persistReducer } from 'redux-persist'
+import hardSet from "redux-persist/es/stateReconciler/hardSet";
+
 
 
 const persistConfig = {
-  //...
-  key:"root",
-  storage: ExpoFileSystemStorage
+  key: "root",
+  storage: AsyncStorage,
+
 }
-const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+const rootReducer = combineReducers({ albumsReducer: persistReducer(persistConfig, albumsReducer) });
 
+export const store = createStore(rootReducer, devToolsEnhancer())
+export const persistor = persistStore(store)
 
-
-let store = createStore(persistedReducer);
-let persistor = persistStore(store);
-
-export default () => {
-  let store = createStore(persistedReducer)
-  let persistor = persistStore(store)
-  return { store, persistor }
-}
 
